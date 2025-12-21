@@ -63,7 +63,7 @@ def parse_kijiji_date(date_str):
 # =============================
 # API ENDPOINT
 # =============================
-@app.get("/scrape/kijiji")
+@app.get("/scrape_kijiji")
 def scrape_kijiji():
 
     r = requests.get(
@@ -145,3 +145,4 @@ def scrape_kijiji():
         "count": len(results),
         "cars": results,
     }
+
