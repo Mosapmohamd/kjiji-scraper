@@ -116,7 +116,7 @@ def scrape_kijiji():
         results.append({
             "title": listing.get("title"),
             "description": listing.get("description"),
-            "price": listing.get("price", {}).get("amount"),
+            "price": listing.get("price", {}).get("amount")//100,
             "currency": "CAD",
             "url": listing.get("url"),
             "images": listing.get("imageUrls") or [],
@@ -145,4 +145,5 @@ def scrape_kijiji():
         "count": len(results),
         "cars": results,
     }
+
 
