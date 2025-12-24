@@ -78,7 +78,7 @@ def scrape_kijiji():
         raise HTTPException(500, "Request failed")
 
     match = re.search(
-        r'<script[^>]+type="application/json"[^>]*>(.*?)</script>',
+        r'<script[^>]*type="application/json"[^>]*>(.*?)</script>',
         r.text,
         re.DOTALL,
     )
@@ -150,6 +150,7 @@ def scrape_kijiji():
         "count": len(results),
         "cars": results,
     }
+
 
 
 
