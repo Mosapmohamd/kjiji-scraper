@@ -112,11 +112,16 @@ def scrape_kijiji():
 
         activation = parse_kijiji_date(listing.get("activationDate"))
         sorting = parse_kijiji_date(listing.get("sortingDate"))
+        amount = listing.get("price", {}).get("amount")
 
-        results.append({
+        if isinstance(amount, (int, float)):
+            price = amount // 100
+        else:
+            price = amount 
+            results.append({
             "title": listing.get("title"),
             "description": listing.get("description"),
-            "price": listing.get("price", {}).get("amount")//100,
+            "price": price,
             "currency": "CAD",
             "url": listing.get("url"),
             "images": listing.get("imageUrls") or [],
@@ -145,5 +150,6 @@ def scrape_kijiji():
         "count": len(results),
         "cars": results,
     }
+
 
 
