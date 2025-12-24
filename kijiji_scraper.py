@@ -82,9 +82,11 @@ def scrape_kijiji():
         r.text,
         re.DOTALL,
     )
+    
 
     if not match:
         raise HTTPException(500, "Embedded JSON not found")
+
 
     raw_json = (
         match.group(1)
@@ -118,7 +120,7 @@ def scrape_kijiji():
             price = amount // 100
         else:
             price = amount 
-            results.append({
+        results.append({
             "title": listing.get("title"),
             "description": listing.get("description"),
             "price": price,
@@ -150,6 +152,7 @@ def scrape_kijiji():
         "count": len(results),
         "cars": results,
     }
+
 
 
 
